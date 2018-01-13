@@ -23,6 +23,7 @@ class PostsController < ApplicationController
     
     def show
         @post = Post.find(params[:post_id]) #한 포스트만 다루므로 단수형
+        @comments = Comment.where(post_id: params[:post_id])
     end
     
     #UPDATE

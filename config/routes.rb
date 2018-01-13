@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ##### POSTS #######
   #Create
   get '/posts/new' => 'posts#new' #주소창이 저렇게 되면 포스츠 컨트롤러의 'new'액션으로 보내라!
   post '/posts/create' => 'posts#create' #모든 주소창 접속방식은 GET방식임. post는 ㄴㄴ
@@ -12,4 +13,11 @@ Rails.application.routes.draw do
   
   #delete
   post '/posts/destroy/:post_id' => 'posts#destroy'
+  
+  #### Comments ####
+  #Create
+  post '/posts/show/:post_id/comments/create' => 'comments#create'
+  #Destroy
+  post '/posts/show/:post_id/comments/destroy/:comment_id' => 'comments#destroy'
+  
 end
