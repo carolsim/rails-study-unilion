@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    #CREATE
     def new
         #사용자가 데이터를 입력할 화면
         #자동으로 액션 이름과 같은 화면을 불러서 사용자에게 보여줘라
@@ -12,7 +13,18 @@ class PostsController < ApplicationController
         @post.title = params[:input_title] #콜론 달면 더 성능 좋음(루비의 특성) params는 특별한 해쉬라서 가능한것
         @post.content = params[:input_content]
         @post.save
-        
-        redirect_to '/posts/new'
+        redirect_to "/posts/show/#{@post.id}" #반드시 큰 따옴표로 써야 루비 문법 사용가능
     end
+     
+    #READ
+    def index
+        @posts = Post.all
+    end
+    
+    def show
+        @post = Post.find(params[:post_id])
+    end
+    
+    
+    
 end
