@@ -8,3 +8,5 @@ class CreatePosts < ActiveRecord::Migration
     end
   end
 end
+
+#정보를 담는건 테이블, 관계를 명시하는건 모델에서 하는 일 
