@@ -18,11 +18,19 @@ class PostsController < ApplicationController
      
     #READ
     def index
-        @posts = Post.all
+        @posts = Post.all #전부를 갖고와서 다뤄야 하기때문에 posts 복수형
     end
     
     def show
+        @post = Post.find(params[:post_id]) #한 포스트만 다루므로 단수형
+    end
+    
+    #DELETE
+    def destroy
         @post = Post.find(params[:post_id])
+        @post.destroy
+        #show같은 것은 대응되는 show화면이 있지만 얘는 액션밖에 없다 -> redirect_to를 해주어야함
+        redirect_to '/'
     end
     
     

@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   root 'posts#index' #root는 메인화면을 설정하는 것이다.
   get '/posts/show/:post_id' => 'posts#show'
   
+  #delete
+  get '/posts/destroy/:post_id' => 'posts#destroy'
 end
