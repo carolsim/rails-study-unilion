@@ -25,6 +25,24 @@ class PostsController < ApplicationController
         @post = Post.find(params[:post_id]) #한 포스트만 다루므로 단수형
     end
     
+    #UPDATE
+    def edit
+        #사용자가 데이터를 입력할 화면
+        @post = Post.find(params[:post_id])
+    end
+    
+    def update
+        #입력받은 데이터를 실제 DB에 저장할 액션
+        @post = Post.find(params[:post_id])
+        #수정할 코드
+        @post.title = params[:input_title] #콜론 달면 더 성능 좋음(루비의 특성) params는 특별한 해쉬라서 가능한것
+        @post.content = params[:input_content]
+        @post.save
+        
+        redirect_to "/posts/show/#{@post.id}"
+    end
+    
+    
     #DELETE
     def destroy
         @post = Post.find(params[:post_id])
