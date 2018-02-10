@@ -1,9 +1,34 @@
-<h1>새 포스트를 입력하는 창</h1>
-<form action="/posts/create" method="post"> #디비에 조작을 가하는 모든 폼 액션은 포스트라고 생각하면 된다.
-    <p>제목</p>
-    <input type="text" name="input_title">
-    <p>내용</p>
-    <input type="text" name="input_content">
-    <p>제출</p>
-    <input type="submit" name="input_submit">
-</form>
+<!--<h1>새 포스트를 입력하는 창</h1>-->
+<!--<form action="/posts/create" method="post"> #디비에 조작을 가하는 모든 폼 액션은 포스트라고 생각하면 된다.-->
+<!--    <p>제목</p>-->
+<!--    <input type="text" name="input_title" >-->
+<!--    <p>내용</p>-->
+<!--    <input type="text" name="input_content">-->
+<!--    <p>제출</p>-->
+<!--    <input type="submit" name="input_submit">-->
+<!--</form>-->
+
+<!--위와 아래는 정확히 똑같은것! 루비의 폼 헬퍼를 이용한것이 아래 코드-->
+<!-- 위에는 토큰이 없음. 하지만 아래의 루비 폼태그를 이용할 경우 보안토큰을 거치기 때문에 글이 써진다!-->
+
+<!--그 이유는 ? -->
+<!--개발자 도구를 보았을 때, 일반 html의 경우 : input type이 없음-->
+<!--레일즈 폼 태그의 경우 : 폼태그 바로 밑에 input type : hidden 이 있음-->
+<!--첫번째 input type -> utf-8로 인코딩해준다는것-->
+<!--두번째 input type -> 인증타입을 가리키는것 인증토큰을 자동으로 생성되는것.-->
+<!--새로고침할때마다 이 인증토큰이 새로 생성된다! 발행된 인증토큰은 레일즈 서버에 세션으로 저장됨-->
+<!--인증토큰에 저장된 value값이 다른 인풋 값들과 함께 서버쪽으로 저장된다.-->
+<!--서버 저장된거 확인하려면 : 로그에 나와있다.-->
+
+
+<%= form_tag '/posts/create', method: 'post' do %>
+    <p>
+        <%=text_field 'title', nil, style: "width:33%"%>
+    </p>
+    <p>
+        <%=text_area 'content', nil, style: "width:33%"%>
+    </p>
+    <%=submit_tag 'submit!'%>
+    
+<!--nil이 왜 들어가냐면 저 부분은 value 값이 들어가기 때문-->
+<!--폼헬퍼 문서는 레일즈 문서에 잘 정리가 되어있당-->
