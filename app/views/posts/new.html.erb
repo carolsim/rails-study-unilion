@@ -23,12 +23,45 @@
 
 <%= form_tag '/posts/create', method: 'post' do %>
     <p>
-        <%=text_field 'title', nil, style: "width:33%"%>
+        <%=text_field_tag 'title', nil, style: "width:33%"%>
     </p>
     <p>
-        <%=text_area 'content', nil, style: "width:33%"%>
+        <%=text_area_tag 'content', nil, style: "width:33%"%>
+        
     </p>
     <%=submit_tag 'submit!'%>
     
 <!--nil이 왜 들어가냐면 저 부분은 value 값이 들어가기 때문-->
 <!--폼헬퍼 문서는 레일즈 문서에 잘 정리가 되어있당-->
+<!--title_field_tag 라고 써야 잘 나온다. 레일즈 폼 헬퍼에 자세히 나옴-->
+
+
+<!--REST는 네트워크 아키텍쳐의 원리 : 자원을 정의하고 자원에 대한 주소를 지정하는 방법들의 모음-->
+<!--이러한 시스템을 따르는것 = Restful System = Rails가 효과적임-->
+restful하게 crud를 작성할 수 있는가..
+1. Resource : 우리가 다루려는 대상
+2. Method : 그 대상에게 취하는 조치
+ 1) Get(Read)
+ 2) Post(Create)
+ 3) Put/Patch(Update)
+ 4) Delete(Delete)
+3. Message
+예시) "title1"이라는 제목을 가진 글을 생성해줘 ->라고 서버에 요청을 함
+여기서 글: 리소스 메소드: 생성해줘, 메세지: "Title1"
+(메소드) Post http://mysebsite.com/posts
+(메세지) { 제목: "Title1"}
+
+
+* GET: 무언가를 달라는 요청 -> URL에 명시적으로 달라는 내용이 보여짐
+https://search.naver.com/search.naver?Query=송중기
+이거랑 실제 URL이랑 같음
+
+* Post: 생성을 요청함 -> 무언가를 생성해 달라고 하는 요청
+ -  URL/URI에 우리가 생성하려는 내용이 드러나지 않는다.
+ex) 회원가입, 글 생성
+
+*Put/Patch = Update
+ PUT http://naver.com/users/1
+ {id: "si4420"} 이렇게 풋 요청을하면 1의 id가 밑의 메세지내용으로 바뀔것
+ 
+* Rest에서는 메소드가 저렇게 불린다. 겟, 포스트, 풋, 딜리트
